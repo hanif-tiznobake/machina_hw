@@ -27,15 +27,12 @@ RUN colcon mixin add default \
 # Your ROS2 workspace directory
 WORKDIR /ros2_ws
 
-# Copy your local ROS2 package into the Docker container
-COPY ./src /ros2_ws/src
-
 # Install any Python dependencies
 RUN pip3 install numpy scipy
 
-# Resolve dependencies using rosdep
-RUN . /opt/ros/humble/setup.sh && \
-    rosdep install --from-paths src --ignore-src -r -y
+# # Resolve dependencies using rosdep
+# RUN . /opt/ros/humble/setup.sh && \
+#     rosdep install --from-paths src --ignore-src -r -y
 
 # Build the ROS2 packages
 RUN . /opt/ros/humble/setup.sh && \
